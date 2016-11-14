@@ -4,7 +4,7 @@
 # Created by Megh Bhatt on 07/16/12.
 # Copyright (c) 2012 Contrail Systems. All rights reserved.
 #
-
+import os
 Import('SandeshEnv')
 
 env = SandeshEnv.Clone();
@@ -20,6 +20,9 @@ for flag in rmflags:
 env['CCFLAGS'] = cflags
 
 env.Append(CPPPATH = ['#tools/sandesh/compiler','#build/include'])
+
+if os.name == 'nt':
+ env.Append(CPPPATH = ['#tools/sandesh/compiler/windows'])
 
 # Lex and Yacc
 env.Append(YACCFLAGS = '-d')
